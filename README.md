@@ -5,5 +5,5 @@ Project for the course of Laboratory Mathematical Modelling held by Professor Ma
 ## Authors
 
 - Thomas Sirchi [Thokas99](https://github.com/Thokas99)
-- Chiara [ChiaraRosati]
+- Chiara [ChiaraRosati](https://github.com/ChiaraRosati)
 - Nicola
