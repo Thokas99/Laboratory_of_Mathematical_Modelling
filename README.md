@@ -1,5 +1,9 @@
 # Laboratory of Mathematical Modelling
 
-- Thomas https://github.com/Thokas99
+Project for the course of Laboratory Mathematical Modelling held by Professor Marchetti (A.Y. 2023-2024).
+
+## Authors
+
+- Thomas Sirchi [Thokas99](https://github.com/Thokas99)
 - Chiara
 - Nicola
