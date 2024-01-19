@@ -45,7 +45,7 @@ def plot_epidemic_results(data):
 
 # Parameters
 mu_val, b0_val, b1_val, phi_val, gamma_val, ni_val, alpha_val = 0.015, 36.4, 0.38, 1.07, 1.8, 36, 0.009
-S0_val, I0_val, R0_val = 0.9988, 0.012, 0.0
+S0_val, I0_val, R0_val = 0.9988, 0.0012, 0.0
 t_initial, t_final, num_steps_val = 0, 10, 50000
 
 # Run simulation
