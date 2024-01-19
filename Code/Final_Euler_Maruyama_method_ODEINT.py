@@ -67,7 +67,7 @@ def simulate_and_plot(t, parameters,initial_conditions):
         solution = solve_sir_model([initial_conditions['S0'], initial_conditions['I0'], initial_conditions['R0']], t, parameters)
         plt.plot(t, solution[:, 1], linewidth=0.9, label=f'Simulation {r + 1}')
 
-    plt.title(f' Adaptive step-size Runge-Kutta method {num_simulations} simulations')
+    plt.title(f' Adaptive step-size Runge-Kutta, {num_simulations} simulations')
     plt.xlabel('Time t (years)')
     plt.ylabel('Infectives I(t)')
     #plt.legend(loc='upper right')

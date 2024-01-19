@@ -18,7 +18,7 @@ except ImportError:
         print("You chose not to install questionary.")
 import questionary
 
-# Perturbation Trasmission
+# Perturbation BIRTH
 # Euler-Maruyama
 
 def dW(delta_t: float) -> float:
@@ -65,7 +65,7 @@ def simulate_and_plot(parameters):
         ts, results = Euler_Maruyama_method(**parameters)
         plt.plot(ts, results[1], linewidth=0.9, label=f'Simulation {r + 1}')
 
-    plt.title(f'Euler-Maruyama stochastic {num_simulations} simulations - transmission rate perturbation')
+    plt.title(f'Euler-Maruyama, {num_simulations} simulations with birth rate perturbation')
     plt.xlabel('Time t (years)')
     plt.ylabel('Infectives I(t)')
     #plt.legend(loc='upper right')
@@ -113,7 +113,7 @@ def modify_input():
             'phi': 1.07,
             'gamma': 1.8,
             'ni': 36,
-            'alpha': 0.01,
+            'alpha': 0.009,
             'S_in': 0.9988,
             'I_in': 0.0012,
             'R_in': 0
