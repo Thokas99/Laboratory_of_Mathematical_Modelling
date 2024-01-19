@@ -59,7 +59,7 @@ def simulate_and_plot(parameters):
     # Specify the number of simulations
     num_simulations = int(questionary.text("Enter the number of simulations:", validate=lambda val: val.isdigit(), default="10").ask())
     plt.figure(figsize=(10, 6))
-    plt.grid(True)  # Add a grid
+    #plt.style.use('ggplot')
     for r in range(num_simulations):
         np.random.seed(r)
         ts, results = Euler_Maruyama_method(**parameters)
@@ -68,8 +68,8 @@ def simulate_and_plot(parameters):
     plt.title(f'Euler-Maruyama stochastic {num_simulations} simulations - transmission rate perturbation')
     plt.xlabel('Time t (years)')
     plt.ylabel('Infectives I(t)')
-    plt.legend(loc='upper right')
-    plt.legend()
+    #plt.legend(loc='upper right')
+    #plt.legend()
     plt.show()
 
 def modify_input():
@@ -83,14 +83,14 @@ def modify_input():
         parameters = {
             't_in': int(questionary.text("Enter initial time:", validate=lambda val: val.isdigit(), default="0").ask()),
             't_end': int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()),
-            'N': int(questionary.text("Enter value for N:", validate=lambda val: val.isdigit(), default="5000").ask()),
+            'N': int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()),
             'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.015").ask()),
             'b0': float(questionary.text("Enter value for b0:", validate=lambda val: not val.isdigit(), default="36.4").ask()),
             'b1': float(questionary.text("Enter value for b1:", validate=lambda val: not val.isdigit(), default="0.38").ask()),
             'phi': float(questionary.text("Enter value for phi:", validate=lambda val: not val.isdigit(), default="1.07").ask()),
             'gamma': float(questionary.text("Enter value for gamma:", validate=lambda val: not val.isdigit(), default="1.8").ask()),
             'ni': int(questionary.text("Enter value for ni:", validate=lambda val: val.isdigit(), default="36").ask()),
-            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.01").ask()),
+            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.25").ask()),
             'S_in': float(questionary.text("Enter value for S_in:", validate=lambda val: not val.isdigit(), default="0.9988").ask()),
             'I_in': float(questionary.text("Enter value for I_in:", validate=lambda val: not val.isdigit(), default="0.0012").ask()),
             'R_in': float(questionary.text("Enter value for R_in:", validate=lambda val: not val.isdigit(), default="0.0").ask())
