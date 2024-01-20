@@ -16,7 +16,7 @@ This project includes two implementations of compartmental models. The first one
 
 The second implementation introduces a stochastic element by utilizing the Euler-Maruyama method to simulate a stochastic differential equation (SDE) model. This extended model also represents the spread of an infectious disease within the SIR framework, incorporating stochastic perturbations in the transmission rate and birth rate.
 
-![Local Image]()
+![Local Image](Graphs/Transmission_rate_perturbation_infected_I(t).png)
 
 Libraries Used
 - NumPy: A powerful library for numerical computing in Python.
