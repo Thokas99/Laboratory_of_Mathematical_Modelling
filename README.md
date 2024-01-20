@@ -1,6 +1,6 @@
 # Laboratory of Mathematical Modelling
 
-Project for the course of Laboratory Mathematical Modelling held by Professor Marchetti (A.Y. 2023-2024).
+Project for the course of *Laboratory Mathematical Modelling* held by Professor Marchetti (A.Y. 2023-2024) at university of Trento, italy.
 
 ## Authors
 
