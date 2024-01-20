@@ -23,3 +23,8 @@ The second implementation introduces a stochastic element by utilizing the Euler
 - *SciPy*: A library for scientific computing that includes modules for numerical integration (odeint is used from scipy.integrate for solving ODEs).
 - *Matplotlib*: A plotting library for creating visualizations in Python.
 - *Questionary*: a library that allows better user imput data
+
+
+
+
+![Local Image](Graphs/logo_unitrento.png)
