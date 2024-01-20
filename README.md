@@ -18,7 +18,7 @@ The second implementation introduces a stochastic element by utilizing the Euler
 
 ![Local Image](Graphs/Transmission_rate_perturbation_infected_I(t).png)
 
-Libraries Used
+## Libraries Used
 - *NumPy*: A powerful library for numerical computing in Python.
 - *SciPy*: A library for scientific computing that includes modules for numerical integration (odeint is used from scipy.integrate for solving ODEs).
 - *Matplotlib*: A plotting library for creating visualizations in Python.
