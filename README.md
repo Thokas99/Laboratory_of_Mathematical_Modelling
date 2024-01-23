@@ -27,4 +27,4 @@ The second implementation introduces a stochastic element by utilizing the Euler
 
 
 
-![Local Image](Graphs/logounitrento2019.jpg){:width="100px"}
+![Local Image](Graphs/logounitrento2019.jpg)
