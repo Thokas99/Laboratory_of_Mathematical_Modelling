@@ -38,6 +38,17 @@ import questionary
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
+import pandas as pd
+
+data = {
+    'Month': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    '2001': [414, 272, 137, 22, 17, 2, 0, 1, 17, 1, 9, 127],
+    '2002': [454, 301, 160, 55, 25, 11, 7, 1, 17, 32, 86, 417],
+    '2003': [382, 138, 120, 50, 2, 10, 4, 4, 31, 64, 284, 607],
+    '2004': [348, 145, 129, 9, 6, 4, 0, 0, 15, 28, 88, 373]
+}
+
+Empirical_data = pd.DataFrame(data)
 
 #############################################################################################################
 
@@ -59,23 +70,32 @@ def solve_sir_model(initial_conditions, t, params):
 # Function to simulate and plot multiple simulations
 def simulate_and_plot(t, parameters,initial_conditions):
     # Specify the number of simulations
-    num_simulations = int(questionary.text("Enter the number of simulations:", validate=lambda val: val.isdigit(), default="10").ask())
+    num_simulations = int(questionary.text("Enter the number of simulations:", validate=lambda val: val.isdigit(), default="1").ask())
     plt.figure(figsize=(10, 6))
     #plt.style.use('ggplot')
-    for r in range(num_simulations):
-        np.random.seed(r)
-        solution = solve_sir_model([initial_conditions['S0'], initial_conditions['I0'], initial_conditions['R0']], t, parameters)
-        plt.plot(t, solution[:, 1], linewidth=0.9, label=f'Simulation {r + 1}')
+    lables_on_y = {0: "Susceptible S(t)",
+                1:"Infectives I(t)",
+                2: "Recovered R(t)"}
+    for n in range(0,3):
+        if num_simulations > 0:
+            for r in range(num_simulations):
+                np.random.seed(r)
+                solution = solve_sir_model([initial_conditions['S0'], initial_conditions['I0'], initial_conditions['R0']], t, parameters)
+                plt.plot(t, solution[:, n], linewidth=0.9, label=f'Simulation {r + 1}')
 
-    plt.title(f' Adaptive step-size Runge-Kutta, {num_simulations} simulations')
-    plt.xlabel('Time t (years)')
-    plt.ylabel('Infectives I(t)')
-    #plt.legend(loc='upper right')
-    #plt.legend()
-    plt.show()
+            #plt.plot(t, Empirical_data.transpose(), linewidth=0.9)
+            plt.title(f' Adaptive step-size Runge-Kutta, {num_simulations} simulations')
+            plt.xlabel('Time t (years)')
+            plt.ylabel(lables_on_y[n])
+            #plt.legend(loc='upper right')
+            #plt.legend()
+            plt.show()
+        else:
+            return "You choose not to simulate :)"
 
 def modify_input():
     modify_input_question = questionary.select(
+        
         f"Do you want to modify the inputs?",
         choices=["Yes", "No"],
         default="No"
@@ -107,7 +127,7 @@ def modify_input():
             
     else:
         # Time vector
-        t = np.linspace(0, 5, 5000)  # Adjust the time range as needed
+        t = np.linspace(0, 4, 5000)  # Adjust the time range as needed
         # Define parameters
         # Parameters
         parameters = {

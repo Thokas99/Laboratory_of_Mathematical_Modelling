@@ -60,17 +60,21 @@ def simulate_and_plot(parameters):
     num_simulations = int(questionary.text("Enter the number of simulations:", validate=lambda val: val.isdigit(), default="10").ask())
     plt.figure(figsize=(10, 6))
     #plt.style.use('ggplot')
-    for r in range(num_simulations):
-        np.random.seed(r)
-        ts, results = Euler_Maruyama_method(**parameters)
-        plt.plot(ts, results[1], linewidth=0.9, label=f'Simulation {r + 1}')
+    lables_on_y = {0: "Susceptible S(t)",
+                   1:"Infectives I(t)",
+                   2: "Recovered R(t)"}
+    for n in range(0,3):
+        for r in range(num_simulations):
+            np.random.seed(r)
+            ts, results = Euler_Maruyama_method(**parameters)
+            plt.plot(ts, results[n], linewidth=0.9, label=f'Simulation {r + 1}')
 
-    plt.title(f'Euler-Maruyama, {num_simulations} simulations with transmission rate perturbation')
-    plt.xlabel('Time t (years)')
-    plt.ylabel('Infectives I(t)')
-    #plt.legend(loc='upper right')
-    #plt.legend()
-    plt.show()
+        plt.title(f'Euler-Maruyama, {num_simulations} simulations with transmission rate perturbation')
+        plt.xlabel('Time t (years)')
+        plt.ylabel(lables_on_y[n])
+        #plt.legend(loc='upper right')
+        #plt.legend()
+        plt.show()
 
 def modify_input():
     modify_input_question = questionary.select(
