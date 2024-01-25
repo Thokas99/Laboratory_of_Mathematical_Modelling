@@ -99,7 +99,7 @@ def modify_input():
                         int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()), 
                         int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()))  
         parameters = {
-            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.015").ask()),
+            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.009").ask()),
             'b0': float(questionary.text("Enter value for b0:", validate=lambda val: not val.isdigit(), default="36.4").ask()),
             'b1': float(questionary.text("Enter value for b1:", validate=lambda val: not val.isdigit(), default="0.38").ask()),
             'phi': float(questionary.text("Enter value for phi:", validate=lambda val: not val.isdigit(), default="1.07").ask()),
@@ -126,7 +126,7 @@ def modify_input():
             'b0': 36.4,
             'b1': 0.38,
             'phi': 1.07,
-            'mu': 0.015,
+            'mu': 0.009,
             'gamma': 1.8,
             'ni': 36,
         }
@@ -134,7 +134,7 @@ def modify_input():
         # Initial conditions
         initial_conditions = {
             'S0': 0.9988,
-            'I0': 0.0012,
+            'I0': 0.0015,
             'R0': 0.0,
         }
         # Call the function to simulate and plot

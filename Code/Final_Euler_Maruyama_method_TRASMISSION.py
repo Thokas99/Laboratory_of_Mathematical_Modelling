@@ -51,7 +51,7 @@ def Euler_Maruyama_method(t_in, t_end, N, mu, b0, b1, phi, gamma, ni, alpha, S_i
     - R_in (float): Initial recovered population.
 
     Returns:
-    - Tuple: Time steps and simulated populations.
+    - Time steps and simulated populations.
     """
     dt = float((t_end - t_in) / N)
     TS = np.arange(t_in, t_end + dt, dt)
@@ -105,6 +105,7 @@ def simulate_and_plot(parameters):
         plt.title(f'Euler-Maruyama, {num_simulations} {plural} with transmission rate perturbation')
         plt.xlabel('Time t (years)')
         plt.ylabel(lables_on_y[n])
+        plt.yscale('linear')
         plt.tight_layout()
         plt.show()
 
@@ -121,13 +122,13 @@ def modify_input():
             't_in': int(questionary.text("Enter initial time:", validate=lambda val: val.isdigit(), default="0").ask()),
             't_end': int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()),
             'N': int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()),
-            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.015").ask()),
+            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.009").ask()),
             'b0': float(questionary.text("Enter value for b0:", validate=lambda val: not val.isdigit(), default="36.4").ask()),
             'b1': float(questionary.text("Enter value for b1:", validate=lambda val: not val.isdigit(), default="0.38").ask()),
             'phi': float(questionary.text("Enter value for phi:", validate=lambda val: not val.isdigit(), default="1.07").ask()),
             'gamma': float(questionary.text("Enter value for gamma:", validate=lambda val: not val.isdigit(), default="1.8").ask()),
             'ni': int(questionary.text("Enter value for ni:", validate=lambda val: val.isdigit(), default="36").ask()),
-            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.728").ask()),
+            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.25").ask()),
             'S_in': float(questionary.text("Enter value for S_in:", validate=lambda val: not val.isdigit(), default="0.9988").ask()),
             'I_in': float(questionary.text("Enter value for I_in:", validate=lambda val: not val.isdigit(), default="0.0012").ask()),
             'R_in': float(questionary.text("Enter value for R_in:", validate=lambda val: not val.isdigit(), default="0.0").ask())
@@ -143,7 +144,7 @@ def modify_input():
             't_in' : 0,
             't_end': 5,
             'N': 5000,
-            'mu': 0.015,
+            'mu': 0.009,
             'b0': 36.4,
             'b1': 0.38,
             'phi': 1.07,

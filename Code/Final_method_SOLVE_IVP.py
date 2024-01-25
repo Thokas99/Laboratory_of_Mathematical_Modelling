@@ -89,7 +89,7 @@ def simulate_and_plot(t, parameters, initial_conditions):
                 simulated_solution = solution.sol(t)
                 plt.plot(t, simulated_solution[n], linewidth=0.9, label=f'Simulation {r + 1}')
 
-            plt.title(f'Adaptive step-size Runge-Kutta, {num_simulations} {plural}')
+            plt.title(f'Runge-Kutta 45, {num_simulations} {plural}')
             plt.xlabel('Time t (years)')
             plt.ylabel(lables_on_y[n])
             plt.show()
@@ -105,7 +105,7 @@ def modify_input():
                         int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()),
                         int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()))
         parameters = {
-            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.015").ask()),
+            'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.009").ask()),
             'b0': float(questionary.text("Enter value for b0:", validate=lambda val: not val.isdigit(), default="36.4").ask()),
             'b1': float(questionary.text("Enter value for b1:", validate=lambda val: not val.isdigit(), default="0.38").ask()),
             'phi': float(questionary.text("Enter value for phi:", validate=lambda val: not val.isdigit(), default="1.07").ask()),
@@ -126,7 +126,7 @@ def modify_input():
             'b0': 36.4,
             'b1': 0.38,
             'phi': 1.07,
-            'mu': 0.015,
+            'mu': 0.009,
             'gamma': 1.8,
             'ni': 36,
         }
