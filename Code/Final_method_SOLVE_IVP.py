@@ -92,6 +92,7 @@ def simulate_and_plot(t, parameters, initial_conditions):
             plt.title(f'Runge-Kutta 45, {num_simulations} {plural}')
             plt.xlabel('Time t (years)')
             plt.ylabel(lables_on_y[n])
+            plt.tight_layout()
             plt.show()
         else:
             return "You chose not to simulate :)"
