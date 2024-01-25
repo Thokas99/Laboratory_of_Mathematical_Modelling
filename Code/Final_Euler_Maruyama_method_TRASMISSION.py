@@ -127,7 +127,7 @@ def modify_input():
             'phi': float(questionary.text("Enter value for phi:", validate=lambda val: not val.isdigit(), default="1.07").ask()),
             'gamma': float(questionary.text("Enter value for gamma:", validate=lambda val: not val.isdigit(), default="1.8").ask()),
             'ni': int(questionary.text("Enter value for ni:", validate=lambda val: val.isdigit(), default="36").ask()),
-            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.25").ask()),
+            'alpha': float(questionary.text("Enter value for alpha:", validate=lambda val: not val.isdigit(), default="0.728").ask()),
             'S_in': float(questionary.text("Enter value for S_in:", validate=lambda val: not val.isdigit(), default="0.9988").ask()),
             'I_in': float(questionary.text("Enter value for I_in:", validate=lambda val: not val.isdigit(), default="0.0012").ask()),
             'R_in': float(questionary.text("Enter value for R_in:", validate=lambda val: not val.isdigit(), default="0.0").ask())
@@ -149,7 +149,7 @@ def modify_input():
             'phi': 1.07,
             'gamma': 1.8,
             'ni': 36,
-            'alpha': 0.25,
+            'alpha': 0.728,
             'S_in': 0.9988,
             'I_in': 0.0012,
             'R_in': 0
