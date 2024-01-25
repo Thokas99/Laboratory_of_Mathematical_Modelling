@@ -1,5 +1,5 @@
 try:
-    from scipy.integrate import odeint
+    from scipy.integrate import solve_ivp
     import numpy as np
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -10,8 +10,8 @@ except ImportError:
 
     if install_choice == "yes":
         try:
-            # Use pip to install the libraries
             import subprocess
+            # Use pip to install the libraries
             subprocess.check_call(['pip', 'install', 'scipy', 'numpy', 'matplotlib', 'seaborn', 'pandas', 'questionary'])
             print("Libraries installed successfully.")
         except Exception as e:
@@ -21,12 +21,12 @@ except ImportError:
 
 #############################################################################################################
 
-def sir_model(y, t, params):
+def sir_model(t, y, params):
     """ODE system for the SIR model.
 
     Parameters:
-    - y (list): List of S, I, R values.
     - t (float): Time.
+    - y (list): List of S, I, R values.
     - params (dict): Dictionary containing model parameters.
 
     Returns:
@@ -42,18 +42,24 @@ def sir_model(y, t, params):
 
     return [dSdt, dIdt, dRdt]
 
-def solve_sir_model(initial_conditions, t, params):
-    """Solves the SIR model ODE using odeint.
+def solve_sir_model(t_span, initial_conditions, params):
+    """Solves the SIR model ODE using scipy's solve_ivp.
 
     Parameters:
+    - t_span (list): List containing start and end times.
     - initial_conditions (list): List of initial conditions [S0, I0, R0].
-    - t (numpy.ndarray): Time array.
     - params (dict): Dictionary containing model parameters.
 
     Returns:
-    - numpy.ndarray: Solution of the ODE.
+    - scipy.integrate.OdeResult: Solution of the ODE.
     """
-    solution = odeint(sir_model, initial_conditions, t, args=(params,))
+    solution = solve_ivp(
+        fun=lambda t, y: sir_model(t, y, params),
+        t_span=t_span,
+        y0=initial_conditions,
+        method='RK45',  # You can choose other methods like 'RK23', 'DOP853', etc.
+        dense_output=True
+    )
     return solution
 
 def simulate_and_plot(t, parameters, initial_conditions):
@@ -79,8 +85,9 @@ def simulate_and_plot(t, parameters, initial_conditions):
         if num_simulations > 0:
             for r in range(num_simulations):
                 np.random.seed(r)
-                solution = solve_sir_model([initial_conditions['S0'], initial_conditions['I0'], initial_conditions['R0']], t, parameters)
-                plt.plot(t, solution[:, n], linewidth=0.9, label=f'Simulation {r + 1}')
+                solution = solve_sir_model([t[0], t[-1]], [initial_conditions['S0'], initial_conditions['I0'], initial_conditions['R0']], parameters)
+                simulated_solution = solution.sol(t)
+                plt.plot(t, simulated_solution[n], linewidth=0.9, label=f'Simulation {r + 1}')
 
             plt.title(f'Adaptive step-size Runge-Kutta, {num_simulations} {plural}')
             plt.xlabel('Time t (years)')
@@ -91,13 +98,12 @@ def simulate_and_plot(t, parameters, initial_conditions):
 
 def modify_input():
     """Prompts the user to modify simulation inputs or use default values."""
-    modify_input_question = questionary.select(f"Do you want to modify the inputs?",choices=["Yes", "No"],default="No").ask()
+    modify_input_question = questionary.select(f"Do you want to modify the inputs?", choices=["Yes", "No"], default="No").ask()
 
     if modify_input_question == "Yes":
-        # Time vector, adjust the time range as needed
-        t = np.linspace(int(questionary.text("Enter initial time:", validate=lambda val: val.isdigit(), default="0").ask()), 
-                        int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()), 
-                        int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()))  
+        t = np.linspace(int(questionary.text("Enter initial time:", validate=lambda val: val.isdigit(), default="0").ask()),
+                        int(questionary.text("Enter end time:", validate=lambda val: val.isdigit(), default="5").ask()),
+                        int(questionary.text("Enter number of steps:", validate=lambda val: val.isdigit(), default="5000").ask()))
         parameters = {
             'mu': float(questionary.text("Enter value for mu:", validate=lambda val: not val.isdigit(), default="0.015").ask()),
             'b0': float(questionary.text("Enter value for b0:", validate=lambda val: not val.isdigit(), default="36.4").ask()),
@@ -107,21 +113,15 @@ def modify_input():
             'ni': int(questionary.text("Enter value for ni:", validate=lambda val: val.isdigit(), default="36").ask()),
         }
 
-        # Initial conditions
         initial_conditions = {
             'S0': float(questionary.text("Enter value for S0:", validate=lambda val: not val.isdigit(), default="0.9988").ask()),
             'I0': float(questionary.text("Enter value for I0:", validate=lambda val: not val.isdigit(), default="0.0012").ask()),
             'R0': float(questionary.text("Enter value for R0:", validate=lambda val: not val.isdigit(), default="0.0").ask())
-            }
+        }
 
-        # Call the function to simulate and plot
-        simulate_and_plot(t,parameters,initial_conditions)
-            
+        simulate_and_plot(t, parameters, initial_conditions)
     else:
-        # Time vector
-        t = np.linspace(0, 4, 5000)  # Adjust the time range as needed
-        # Define parameters
-        # Parameters
+        t = np.linspace(0, 4, 5000)
         parameters = {
             'b0': 36.4,
             'b1': 0.38,
@@ -131,16 +131,18 @@ def modify_input():
             'ni': 36,
         }
 
-        # Initial conditions
         initial_conditions = {
             'S0': 0.9988,
             'I0': 0.0012,
             'R0': 0.0,
         }
-        # Call the function to simulate and plot
-        simulate_and_plot(t,parameters,initial_conditions)
+
+        simulate_and_plot(t, parameters, initial_conditions)
 
 modify_input()
+
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def real_data():
     """Plots real data using Matplotlib."""

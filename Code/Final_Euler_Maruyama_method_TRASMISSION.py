@@ -1,32 +1,58 @@
-import numpy as np
-import matplotlib.pyplot as plt
 try:
     import questionary
+    import numpy as np
+    import matplotlib.pyplot as plt
 except ImportError:
-    print("Questionary library is not installed.")
+    print("One or more required libraries are not installed.")
     install_choice = input("Do you want to install it? (yes/no): ").lower()
 
     if install_choice == "yes":
         try:
             # Use pip to install the library
             import subprocess
-            subprocess.check_call(['pip', 'install', 'questionary'])
-            print("Questionary installed successfully.")
+            subprocess.check_call(['pip', 'install', 'questionary','numpy','matplotlib'])
+            print("Required libraries installed successfully.")
         except Exception as e:
-            print(f"Error installing questionary: {e}")
+            print(f"Error installing the required libraries: {e}")
     else:
-        print("You chose not to install questionary.")
-import questionary
-import questionary
+        print("You chose not to install the required libraries.")
 
+#############################################################################################################
 # Perturbation Trasmission
 # Euler-Maruyama
 
 def dW(delta_t: float) -> float:
-    """Sample a random number at each call."""
+    """Sample a random number at each call.
+
+    Parameters:
+    - delta_t (float): Time step.
+
+    Returns:
+    - float: Random number sampled.
+    """
     return np.random.normal(loc=0.0, scale=np.sqrt(delta_t))
 
 def Euler_Maruyama_method(t_in, t_end, N, mu, b0, b1, phi, gamma, ni, alpha, S_in, I_in, R_in):
+    """Simulate a stochastic SIR model using the Euler-Maruyama method.
+
+    Parameters:
+    - t_in (int): Initial time.
+    - t_end (int): End time.
+    - N (int): Number of steps.
+    - mu (float): Parameter mu.
+    - b0 (float): Parameter b0.
+    - b1 (float): Parameter b1.
+    - phi (float): Parameter phi.
+    - gamma (float): Parameter gamma.
+    - ni (int): Parameter ni.
+    - alpha (float): Parameter alpha.
+    - S_in (float): Initial susceptible population.
+    - I_in (float): Initial infected population.
+    - R_in (float): Initial recovered population.
+
+    Returns:
+    - Tuple: Time steps and simulated populations.
+    """
     dt = float((t_end - t_in) / N)
     TS = np.arange(t_in, t_end + dt, dt)
     assert TS.size == N + 1
@@ -56,10 +82,17 @@ def Euler_Maruyama_method(t_in, t_end, N, mu, b0, b1, phi, gamma, ni, alpha, S_i
 
 # Function to simulate and plot multiple simulations
 def simulate_and_plot(parameters):
+    """Simulate and plot multiple stochastic SIR model simulations.
+
+    Parameters:
+    - parameters (dict): Dictionary containing simulation parameters.
+    """
     # Specify the number of simulations
     num_simulations = int(questionary.text("Enter the number of simulations:", validate=lambda val: val.isdigit(), default="10").ask())
+    plural = "simulations"
+    if num_simulations < 2:
+        plural = "simulation"
     plt.figure(figsize=(10, 6))
-    #plt.style.use('ggplot')
     lables_on_y = {0: "Susceptible S(t)",
                    1:"Infectives I(t)",
                    2: "Recovered R(t)"}
@@ -69,14 +102,14 @@ def simulate_and_plot(parameters):
             ts, results = Euler_Maruyama_method(**parameters)
             plt.plot(ts, results[n], linewidth=0.9, label=f'Simulation {r + 1}')
 
-        plt.title(f'Euler-Maruyama, {num_simulations} simulations with transmission rate perturbation')
+        plt.title(f'Euler-Maruyama, {num_simulations} {plural} with transmission rate perturbation')
         plt.xlabel('Time t (years)')
         plt.ylabel(lables_on_y[n])
-        #plt.legend(loc='upper right')
-        #plt.legend()
+        plt.tight_layout()
         plt.show()
 
 def modify_input():
+    """Prompt user to modify simulation inputs or use default values."""
     modify_input_question = questionary.select(
         f"Do you want to modify the inputs?",
         choices=["Yes", "No"],
@@ -105,7 +138,7 @@ def modify_input():
             
     else:
         
-        # Define parameters
+        # Define default parameters
         parameters = {
             't_in' : 0,
             't_end': 5,
