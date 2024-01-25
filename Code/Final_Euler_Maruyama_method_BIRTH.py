@@ -51,7 +51,7 @@ def Euler_Maruyama_method(t_in, t_end, N, mu, b0, b1, phi, gamma, ni, alpha, S_i
     - R_in (float): Initial recovered population.
 
     Returns:
-    - Tuple: Time vector (TS) and a list containing arrays for S, I, and R.
+    - Time steps and simulated populations.
     """
     dt = float((t_end - t_in) / N)
     TS = np.arange(t_in, t_end + dt, dt)
