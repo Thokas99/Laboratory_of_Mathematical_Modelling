@@ -11,9 +11,9 @@ This is based on the article:
 
 ## Authors
 
-- Thomas Sirchi [Thokas99](https://github.com/Thokas99)
-- Chiara [ChiaraRosati](https://github.com/ChiaraRosati)
-- Nicola [nicolaperotti](https://github.com/nicolaperotti)
+- [Thomas Sirchi](https://github.com/Thokas99)
+- [Chiara Rosati](https://github.com/ChiaraRosati)
+- [Nicola Perotti](https://github.com/nicolaperotti)
 
 ## Description
 This project includes two implementations of compartmental models. The first one is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
