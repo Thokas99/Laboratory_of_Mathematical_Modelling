@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def real_data():
-    """Plots real data using Matplotlib and Seaborn."""
+    """Plots real data using Seaborn."""
     data = {
         'Month': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         '2001': [414, 272, 137, 22, 17, 2, 0, 1, 17, 1, 9, 127],
