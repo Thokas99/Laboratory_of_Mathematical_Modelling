@@ -16,7 +16,11 @@ This is based on the article:
 - [Nicola Perotti](https://github.com/nicolaperotti)
 
 ## Description
-This project includes two implementations of compartmental models. The first one is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
+This project includes two implementations of compartmental models starting from the real data presented in the article cited above:
+
+![Local Image](Graphs/infected_over_the_months_for_each_year.png)
+
+The first implementation is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
 
 ![Local Image](Graphs/2Det_solve_ivp_I(t).png)
 
