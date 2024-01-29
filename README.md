@@ -30,7 +30,9 @@ The first implementation is a deterministic SIR (Susceptible-Infectious-Recovere
 
 The second implementation introduces a stochastic element by utilizing the Euler-Maruyama method to simulate a stochastic differential equation (SDE) model. This extended model also represents the spread of an infectious disease within the SIR framework, incorporating stochastic perturbations in the transmission rate and birth rate.
 
-![Local Image](Graphs/transmission_aphabig_I(t).png)
+<div align="center">
+  <img src="Graphs/transmission_aphabig_I(t).png" alt="transmission_aphabig_I(t)">
+</div>
 
 ## Libraries Used
 - [NumPy](https://numpy.org/) A powerful library for numerical computing in Python.
