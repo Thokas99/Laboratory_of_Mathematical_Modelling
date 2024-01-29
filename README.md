@@ -24,8 +24,9 @@ This project includes two implementations of compartmental models starting from 
 
 The first implementation is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
 
-![Local Image](Graphs/2Det_solve_ivp_I(t).png)
-
+<div align="center">
+  <img src="Graphs/2Det_solve_ivp_I(t).png" alt="2Det_solve_ivp_I(t)">
+</div>
 
 The second implementation introduces a stochastic element by utilizing the Euler-Maruyama method to simulate a stochastic differential equation (SDE) model. This extended model also represents the spread of an infectious disease within the SIR framework, incorporating stochastic perturbations in the transmission rate and birth rate.
 
