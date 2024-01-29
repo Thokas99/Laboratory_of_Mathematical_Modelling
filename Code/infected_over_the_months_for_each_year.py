@@ -1,9 +1,9 @@
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-def real_data_series():
-    """Transforms DataFrame to Series with ordered months based on years."""
+def real_data():
+    """Plots real data using Matplotlib and Seaborn."""
     data = {
         'Month': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         '2001': [414, 272, 137, 22, 17, 2, 0, 1, 17, 1, 9, 127],
@@ -14,27 +14,16 @@ def real_data_series():
 
     Empirical_data = pd.DataFrame(data)
 
-    # Melt the DataFrame to have 'Year', 'Month', and 'Value' as separate columns
-    melted_data = pd.melt(Empirical_data, id_vars='Month', var_name='Year', value_name='Value')
+    # Transpose the DataFrame before grouping
+    grouped_data = Empirical_data.set_index('Month').T.groupby(level=0, axis=1).sum().T
 
-    # Sort the melted data by 'Year' and 'Month'
-    sorted_data = melted_data.sort_values(['Year', 'Month'])
+    # Seaborn Line Plot
+    plt.figure(figsize=(12, 6))
+    sns.lineplot(data=grouped_data, markers=True, dashes=False)
+    plt.title('Infected Over the Months for Each Year')
+    plt.xlabel('Year')
+    plt.ylabel('Sum')
+    plt.tight_layout()
+    plt.show()
 
-    # Create a Series using 'Value' as data and a MultiIndex with 'Year' and 'Month'
-    series_data = pd.Series(sorted_data['Value'].values, index=pd.MultiIndex.from_frame(sorted_data[['Year', 'Month']]))
-
-    return series_data
-
-result_series = real_data_series()
-
-# Reshape the data for plotting
-plot_data = result_series.unstack(level=0)
-
-# Plotting using Seaborn
-plt.figure(figsize=(12, 6))
-sns.lineplot(data=plot_data, markers=True, dashes=False)
-plt.title('Infected Over the Months for Each Year')
-plt.xlabel('Month')
-plt.ylabel('Value')
-plt.tight_layout()
-plt.show()
+real_data()
