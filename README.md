@@ -28,7 +28,7 @@ The first implementation is a deterministic SIR (Susceptible-Infectious-Recovere
 
 ```math
 \begin{align*}
-$\beta(t) = b_{0}(1 + b_{1}\cos(2\pi t + \Phi))$ [weber]\\
+\beta(t) = b_{0}(1 + b_{1}\cos(2\pi t + \Phi))$ [weber]\\
 \dot{S}(t) &= \mu - \mu S(t) - \beta(t) S(t) I(t) + \gamma R(t), \quad S(0)=S_{0} > 0 \\
 \dot{I}(t) &= \beta(t) S(t) I(t) - \nu I(t) - \mu I(t), \quad I(0)=I_{0} > 0 \\
 \dot{R}(t) &= \nu I(t) - \mu R(t) - \gamma R(t), \quad R(0)=R_{0} > 0
