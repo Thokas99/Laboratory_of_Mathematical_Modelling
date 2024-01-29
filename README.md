@@ -25,7 +25,7 @@ This project includes two implementations of compartmental models starting from 
 
 
 The first implementation is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs):
-
+$$
 $\beta(t) = b_{0}(1 + b_{1}\cos(2\pi t + \Phi))$ [weber]
 
 \begin{align*}
@@ -33,7 +33,7 @@ $\beta(t) = b_{0}(1 + b_{1}\cos(2\pi t + \Phi))$ [weber]
 \dot{I}(t) &= \beta(t) S(t) I(t) - \nu I(t) - \mu I(t), \quad I(0)=I_{0} > 0 \\
 \dot{R}(t) &= \nu I(t) - \mu R(t) - \gamma R(t), \quad R(0)=R_{0} > 0
 \end{align*}
-
+$$
 
 
 
