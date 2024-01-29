@@ -18,7 +18,9 @@ This is based on the article:
 ## Description
 This project includes two implementations of compartmental models starting from the real data presented in the article cited above:
 
-![Local Image](Graphs/infected_over_the_months_for_each_year.png)
+<div align="center">
+  <img src="Graphs/infected_over_the_months_for_each_year.png" alt="Infected Over the Months for Each Year">
+</div>
 
 The first implementation is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
 
