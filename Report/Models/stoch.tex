@@ -1,0 +1,23 @@
+Fluctuations in the environment can greatly effect a model dynamics, and the effect is much visible the smaller the population. In this article perturbations are added to the birth rate and on the baseline transmission parameter, resulting in two different $It \hat{o}$ type stochastic differential system, where each equation contains a deterministic part and a stochastic part defined by a standard Wiener process W(t). 
+ The selected parameter exhibits random oscillations around the mean value employed in the deterministic model. These parameter perturbations are characterized by an average value augmented by a time-varying term, adhering to a normal distribution with a mean of zero.
+Biologically these fluctuations can be explained by natural variability in births, social conditions and weather.\\
+The perturbed birth parameter and the resulting stochastic system take the form:
+ \begin{gather}
+    \begin{aligned}
+    \widetilde{\mu} &= \mu + \alpha \dot{W}(t) \\
+    \dot{S}(t) &= [\mu - \mu S(t) - \beta (t) S(t) I(t) + \gamma R(t)] \ dt + \alpha (1-S(t)) \ dW(t) \\
+    \dot{I}(t) &= [\beta (t) S(t) I(t) - \nu I(t) - \mu I(t)] \ dt - \alpha I(t) \ dW(t)  \\
+    \dot{R}(t) &= [\nu I(t) - \mu R(t) - \gamma R(t)] \ dt - \alpha R(t) \ dW(t)
+    \end{aligned}
+ \label{eq:System2}
+ \end{gather}
+An analogous procedure is applied to the baseline-transmission rate perturbed system, resulting in the set of equations below:
+ \begin{gather}
+    \begin{aligned}
+    \widetilde{b_{0}} &= b_{0} + \alpha \dot{W}(t) \\
+    \dot{S}(t) &= [\mu - \mu S(t) - \beta (t) S(t) I(t) + \gamma R(t)] \ dt - \frac{\alpha \beta (t)}{b_{0}} S(t) I(t) \ dW(t) \\
+    \dot{I}(t) &= [\beta (t) S(t) I(t) - \nu I(t) - \mu I(t)] \ dt - \frac{\alpha \beta (t)}{b_{0}} S(t) I(t) \ dW(t)  \\
+    \dot{R}(t) &= [\nu I(t) - \mu R(t) - \gamma R(t)] \ dt 
+    \end{aligned}
+ \label{eq:System3}
+ \end{gather}

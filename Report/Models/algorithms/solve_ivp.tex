@@ -1,0 +1,14 @@
+\texttt{solve\_ivp} is a function within the \texttt{scipy.integrate} module, designed for solving initial value problems associated with a system of ordinary differential equations (ODEs) \cite{2020SciPy-NMeth}. It accommodates various integration methods, domains, and events, and is capable of handling complex-valued problems and vectorized functions.
+%\newpage
+Following a brief description of the primary arguments:
+
+\begin{itemize}
+    \item \texttt{fun}: A callable function that computes the derivative of the state vector \texttt{y} at time \texttt{t}. It should have the signature \texttt{fun(t, y, *args)}, where \texttt{t} is a scalar, \texttt{y} is an array, and \texttt{args} are optional extra arguments.
+    
+    \item \texttt{t\_span}: A 2-tuple of floats specifying the integration interval \texttt{(t0, tf)}. The solver initiates at \texttt{t=t0} and integrates until \texttt{t=tf}.
+    
+    \item \texttt{y0}: An array containing the initial condition for \texttt{y} at \texttt{t0}.
+    
+    \item \texttt{method}: A string or an \texttt{OdeSolver} object specifying the integration method.
+
+The argument \texttt{method} allows you to decide the algorithm, in our implementation we used the \texttt{'RK45'}, an explicit Runge-Kutta of order 5(4)\cite{rk45family}. The error is controlled assuming accuracy of the fourth-order method accuracy, but steps are taken using the fifth-order accurate formula (local extrapolation is done)\cite{2020SciPy-NMeth}.

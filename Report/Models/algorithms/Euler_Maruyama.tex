@@ -1,0 +1,18 @@
+The Euler–Maruyama method (also called the Euler method) is a method for the approximate numerical solution of a stochastic differential equation (SDEs)\cite{stochastic}. It is an extension of the Euler method for ordinary differential equations to stochastic differential equations, named after Leonhard Euler and Gisiro Maruyama. \par
+The authors of the article used the Euler-Maruyama and Milstein algorithms to simulate their system of SDEs. Since the results between the two methods are interchangeable we decided to implement only the Euler-Maruyama framework in Python, both for the birth rate and transmission rate perturbation. Each model is simulated 10 times to account for the intrinsic variability of stochastic systems. The resulting scripts also allow for the possibility of changing the parameters’ values from user’s inputs. \\
+The pseudo-code for the Euler-Maruyama algorithm is as follows: \\
+\\
+\textit{
+\textbf{Inputs}: initial time, final time, number of steps, number of iterations. \\
+\textbf{Outputs}: vectors of time points and variables dynamic. 
+\begin{enumerate}
+	\item Define the dW function, which sample  a random number from a normal distribution with 	         mean zero and variance dt;
+	\item define the time step dt;
+	\item initialize model parameters;
+	\item initialize the initial conditions for each variable at time t=0;
+	\item for $1< t <number \ of \ steps + 1$: \\
+        \quad update each variable state according to the model equations; \\
+        \quad update simulation time t=t+dt;
+	\item iterate the process for the specified number of iterations.
+\end{enumerate}
+}
