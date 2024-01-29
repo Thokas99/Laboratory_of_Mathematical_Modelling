@@ -16,17 +16,21 @@ This is based on the article:
 - [Nicola Perotti](https://github.com/nicolaperotti)
 
 ## Description
-This project includes two implementations of compartmental models starting from the real data presented in the article cited above:
+This project includes two implementations of compartmental models starting from the real data presented in the article cited above.
+
 
 <div align="center">
   <img src="Graphs/infected_over_the_months_for_each_year.png" alt="Infected Over the Months for Each Year">
 </div>
 
+
 The first implementation is a deterministic SIR (Susceptible-Infectious-Recovered) model, which simulates the spread of an infectious disease over time using a system of ordinary differential equations (ODEs). 
+
 
 <div align="center">
   <img src="Graphs/2Det_solve_ivp_I(t).png" alt="2Det_solve_ivp_I(t)">
 </div>
+
 
 The second implementation introduces a stochastic element by utilizing the Euler-Maruyama method to simulate a stochastic differential equation (SDE) model. This extended model also represents the spread of an infectious disease within the SIR framework, incorporating stochastic perturbations in the transmission rate and birth rate.
 
@@ -36,7 +40,7 @@ The second implementation introduces a stochastic element by utilizing the Euler
 
 ## Libraries Used
 - [NumPy](https://numpy.org/) A powerful library for numerical computing in Python.
-- [SciPy](https://scipy.org/): A library for scientific computing that includes modules for numerical integration (odeint is used from scipy.integrate for solving ODEs).
+- [SciPy](https://scipy.org/): A library for scientific computing that includes modules for numerical integration (Solve_ivp is used from scipy.integrate for solving ODEs).
 - [Matplotlib](https://matplotlib.org/): A plotting library for creating visualizations in Python.
 - [Questionary](https://github.com/tmbo/questionary): a library that allows better user imput data
 
