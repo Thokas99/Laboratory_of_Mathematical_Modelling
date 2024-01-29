@@ -46,10 +46,10 @@ The second implementation introduces a stochastic element by utilizing the Euler
 
 ```math
 \begin{align*}
-\widetilde{\mu} &= \mu + \alpha \dot{W}(t) \\
-\dot{S}(t) &= [\mu - \mu S(t) - \beta (t) S(t) I(t) + \gamma R(t)] \ dt + \alpha (1-S(t)) \ dW(t) \\
-\dot{I}(t) &= [\beta (t) S(t) I(t) - \nu I(t) - \mu I(t)] \ dt - \alpha I(t) \ dW(t)  \\
-\dot{R}(t) &= [\nu I(t) - \mu R(t) - \gamma R(t)] \ dt - \alpha R(t) \ dW(t)
+\widetilde{b_{0}} &= b_{0} + \alpha \dot{W}(t) \\
+\dot{S}(t) &= [\mu - \mu S(t) - \beta (t) S(t) I(t) + \gamma R(t)] \ dt - \frac{\alpha \beta (t)}{b_{0}} S(t) I(t) \ dW(t) \\
+\dot{I}(t) &= [\beta (t) S(t) I(t) - \nu I(t) - \mu I(t)] \ dt - \frac{\alpha \beta (t)}{b_{0}} S(t) I(t) \ dW(t)  \\
+\dot{R}(t) &= [\nu I(t) - \mu R(t) - \gamma R(t)] \ dt 
 \end{align*}
 ```
 
