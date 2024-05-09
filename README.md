@@ -63,7 +63,6 @@ The second implementation introduces a stochastic element by utilizing the Euler
 - [Matplotlib](https://matplotlib.org/): A plotting library for creating visualizations in Python.
 - [Questionary](https://github.com/tmbo/questionary): a library that allows better user imput data
 
-
-
-
-![Local Image](Graphs/1635923538.jpg)
+<div align="center">
+  <img src="Graphs/1635923538.jpg" alt="drawing" width="200"/>
+</div>
